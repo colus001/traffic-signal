@@ -8,7 +8,7 @@ const int cds = A0;
 const int tact = 7;
 
 const int interval = 30000;
-const int mode = 3;
+const int mode = 1;
 
 int currentLED = redLED;
 int sensorValue = 0;
