@@ -107,26 +107,26 @@ void trafficLight() {
   }
 }
 
-void turnLightWithSignal (int currentLED) { 
-  switch ( currentLED ) {
-    case redLED: 
-      analogWrite(redLED, outputValue);
-      analogWrite(yellowLED, 0);
-      analogWrite(greenLED, 0);
-      break;
-    case yellowLED:
-      analogWrite(redLED, 0);
-      analogWrite(yellowLED, outputValue);
-      analogWrite(greenLED, 0);
-      break;
-    case greenLED:
-      analogWrite(redLED, 0);
-      analogWrite(yellowLED, 0);
-      analogWrite(greenLED, outputValue);
-      break;
-    default:
-      break;    
+void greenSignal() {  
+  digitalWrite(redLED, LOW);
+  digitalWrite(yellowLED, HIGH);
+  digitalWrite(greenLED, LOW);
+  delay(1000);
+  
+  digitalWrite(redLED, LOW);
+  digitalWrite(yellowLED, LOW);
+  digitalWrite(greenLED, HIGH);
+  delay(5000);
+  
+  for ( int i = 0; i < 5; i++ ) {
+    digitalWrite(greenLED, LOW);
+    delay(750);
+    digitalWrite(greenLED, HIGH);
+    delay(750);
   }
+  
+  digitalWrite(greenLED, LOW);
+  prevTimer = millis();
 }
 
 void greenLight() {
@@ -156,24 +156,25 @@ void greenLight() {
   turnLightWithSignal(currentLED);
 }
 
-void greenSignal() {  
-  digitalWrite(redLED, LOW);
-  digitalWrite(yellowLED, HIGH);
-  digitalWrite(greenLED, LOW);
-  delay(1000);
-  
-  digitalWrite(redLED, LOW);
-  digitalWrite(yellowLED, LOW);
-  digitalWrite(greenLED, HIGH);
-  delay(5000);
-  
-  for ( int i = 0; i < 5; i++ ) {
-    digitalWrite(greenLED, LOW);
-    delay(750);
-    digitalWrite(greenLED, HIGH);
-    delay(750);
+void turnLightWithSignal (int currentLED) { 
+  switch ( currentLED ) {
+    case redLED: 
+      analogWrite(redLED, outputValue);
+      analogWrite(yellowLED, 0);
+      analogWrite(greenLED, 0);
+      break;
+    case yellowLED:
+      analogWrite(redLED, 0);
+      analogWrite(yellowLED, outputValue);
+      analogWrite(greenLED, 0);
+      break;
+    case greenLED:
+      analogWrite(redLED, 0);
+      analogWrite(yellowLED, 0);
+      analogWrite(greenLED, outputValue);
+      break;
+    default:
+      break;    
   }
-  
-  digitalWrite(greenLED, LOW);
-  prevTimer = millis();
 }
+
